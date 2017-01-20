@@ -1,6 +1,6 @@
 #include <Servo.h>
 char val;
-
+// this is a change
 int swivelPos = 0;
 int shoulderPos = 0;
 int elbowPos = 0;

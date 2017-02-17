@@ -18,16 +18,24 @@ void setup()
 {
 pinMode(13, OUTPUT); 
 pinMode(12, OUTPUT); 
-pinMode(11, OUTPUT);
+pinMode(8, OUTPUT);
 pinMode(10, OUTPUT);
 pinMode(9, OUTPUT);
 
 Serial.begin(9600); 
-Clamp.attach(9);
-Wrist.attach(10); 
-Elbow.attach(11);
-Shoulder.attach(12);
+
 Swivel.attach(13);
+
+Shoulder.attach(12);
+
+Elbow.attach(10);
+
+Wrist.attach(9);
+
+Clamp.attach(8);
+
+Shoulder.write(15);
+Swivel.write(50);
 }
 
 void loop() 
@@ -38,14 +46,14 @@ if(Serial.available())
 
   if(val == '1')
   {
-  swivelPos+=2;
+  swivelPos+=4;
   Swivel.write(swivelPos);
   
   }
   
 else if(val == '2')
   {
-  swivelPos-=2;
+  swivelPos-=4;
   Swivel.write(swivelPos);
  
   }
@@ -53,14 +61,14 @@ else if(val == '2')
 else if(val == '3')
   {
   shoulderPos+=1;
-  Shoulder.write(shoulderPos);
+  Shoulder.write(9);
  
   }
   
  else if(val == '4')
   {
   shoulderPos-=1;
-  Shoulder.write(shoulderPos);
+  Shoulder.write(26);
  
   }
     
@@ -103,10 +111,15 @@ else if(val == '5')
   Wrist.write(wristPos);
  
   }
-  else{
-    
+  else if(val == 'p')
+  {
+ 
+ Swivel.write(0);
   }
-
+  else{
+    Shoulder.write(18);
+  }
+ 
 delay(10);
 
 
